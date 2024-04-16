@@ -12,7 +12,6 @@ export default {
   <h1>Hello Brian Chebon</h1>
 
   <tags-input> </tags-input>
-  <tags-input />
 
 </template>
 
