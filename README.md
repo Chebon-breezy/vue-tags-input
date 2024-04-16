@@ -1,0 +1,1 @@
+Front end in Vue.JS for the task backend project build with laravel and SQL
