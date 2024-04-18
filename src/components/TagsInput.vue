@@ -9,7 +9,7 @@
     {{ newTag }}
 
     <input type="text" v-model.trim="newTag" v-on:keydown.enter="addNewTag" v-on:keydown.delete="removeLastTag"
-        v-on:keydown.tab.prevent="addNewTag" />
+        v-on:keydown.tab.prevent="addNewTag" v-bind:class="{ 'tag-exists': tags.includes(newTag) }" />
 </template>
 
 
@@ -38,3 +38,10 @@ export default {
     }
 };    
 </script>
+
+<style scoped>
+.tag-exists {
+    color: red;
+    text-decoration: line-through;
+}
+</style>
