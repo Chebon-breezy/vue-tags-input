@@ -9,7 +9,7 @@
     {{ newTag }}
 
     <input type="text" v-model.trim="newTag" v-on:keydown.enter="addNewTag" v-on:keydown.delete="removeLastTag"
-        v-on:keydown.tab.prevent="addNewTag" v-bind:class="{ 'tag-exists': tags.includes(newTag) }" />
+        v-on:keydown.tab.prevent="addNewTag" v-bind:class="{ 'tag-exists': this.isTagExists }" />
 </template>
 
 
@@ -19,10 +19,25 @@ export default {
         tags: ["Vue", "React", "Angular", "Next"],
         newTag: "preact"
     }),
+
+    watch: {
+        newTag(newval) {
+            if (newval.indexOf(",") > -1) {
+                this.newTag = this.newTag.slice(0, -1);
+                this.addNewTag();
+            }
+        }
+    },
+
+    computed: {
+        isTagExists() {
+            return this.tags.includes(this.newTag);
+        }
+    },
     methods: {
         addNewTag() {
 
-            if (this.newTag) {
+            if (this.newTag && !this.isTagExists) {
                 this.tags.push(this.newTag);
                 this.newTag = "";
             }

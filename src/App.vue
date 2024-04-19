@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <h1>Hello Brian Chebon</h1>
+  <h1>Hello Brian</h1>
 
   <tags-input> </tags-input>
 
