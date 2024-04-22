@@ -20,10 +20,19 @@
 
 <script>
 export default {
-    data: () => ({
-        tags: ["Vue", "React", "Angular", "Next"],
-        newTag: ""
-    }),
+    data() {
+        return {
+            tags: [...this.selectedTags],
+            newTag: ""
+        }
+    },
+
+    props: {
+        selectedTags: {
+            type: Array,
+            default: () => []
+        }
+    },
 
     watch: {
         newTag(newval) {
@@ -39,16 +48,22 @@ export default {
             return this.tags.includes(this.newTag);
         }
     },
+
+    emits: ["change"],
+
     methods: {
         addNewTag() {
 
             if (this.newTag && !this.isTagExists) {
                 this.tags.push(this.newTag);
                 this.newTag = "";
+                this.$emit('change', this.tags);
             }
         },
         removeTag(index) {
             this.tags.splice(index, 1);
+
+            this.$emit('change', this.tags);
         },
         removeLastTag() {
             if (this.newTag.length === 0) {

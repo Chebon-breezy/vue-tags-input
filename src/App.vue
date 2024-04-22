@@ -2,17 +2,26 @@
 import TagsInput from "./components/TagsInput.vue";
 
 export default {
-  components: {
-    // TagsInput
+  data: () => ({
+    jsFrameworks: ["react.js", "Vue.js", "Angular.js"],
+    backendFramework: []
+  }),
+
+  methods: {
+    handleChange(tags) {
+      this.jsFrameworks = [...tags];
+    }
   }
 };
 </script>
 
 <template>
-  <h1>Hello Brian</h1>
+  <h1>Your Favourite Frameworks</h1>
+  <div>{{ jsFrameworks }}</div>
+  <tags-input :selected-tags="jsFrameworks" @change="handleChange" />
 
-  <tags-input> </tags-input>
-
+  <div>{{ backendFramework }}</div>
+  <tags-input :selected-tags="backendFramework" @change="backendFramework = [...$event]" />
 </template>
 
 <style>
