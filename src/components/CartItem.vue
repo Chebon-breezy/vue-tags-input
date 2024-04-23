@@ -10,13 +10,7 @@ export default {
   },
 
   setup(props) {
-    console.log(props.cartItem);
-
-    const item = reactive({
-      name: "product 1",
-      price: 100,
-      quantity: 1
-    })
+    const item = reactive(props.cartItem);
 
     const increment = () => item.quantity++;
     const decrement = () => {
